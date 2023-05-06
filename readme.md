@@ -1,4 +1,4 @@
-# Whay we gonna learn
+# Our aim is infrustucture. What we gonna learn ? 
 * Docker
 * Kubernetes
 * redis
@@ -82,6 +82,46 @@ What is Registry ?
 Docker Image ?
 * An image is a read-only template with instructions for creating a Docker container. Often, an image is based on another image, with some additional customization. For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.
 
-<br>
-First of all we have to know whar os runs over our Image.
+* <br>
+1. Select Image
+2. Select packages
+
+_____________________
+Docker Hub [https://hub.docker.com/]
+
+### To run Image
+* DockerFile - is a file, where you can write instructions for docker
+* Docker Compose 
+* Docker Run - is a command, where you can run docker image
+
+
+##  Dockerfile
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "src/index.js"]
+```
+
+## Docker Compose
+```yaml
+version: "3.8"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      NODE_ENV: production
+  redis:
+    image: "redis:alpine"
+```
+
+## Docker Run
+```bash
+docker run -d -p 5000:5000 --name web web
+```
 
