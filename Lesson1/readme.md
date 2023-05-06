@@ -96,10 +96,11 @@ Docker Hub [https://hub.docker.com/]
 
 
 ##  Dockerfile
+
 ```dockerfile
 FROM node:18-alpine
 WORKDIR /app
-COPY . .
+COPY .. .
 RUN yarn install --production
 CMD ["node", "src/index.js"]
 ```
