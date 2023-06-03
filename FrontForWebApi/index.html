@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="get">
+    <input type="submit" value="GetData" >
+</form>
+
+<p id="person-data"></p>
+
+<script>
+    var form = document.querySelector('form');
+    var paragraph = document.querySelector('#person-data');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:8080/api/People');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var person = JSON.parse(xhr.responseText);
+                paragraph.innerHTML = person.name + ' ' + person.surname;
+            }
+            else {
+                paragraph.innerHTML = 'Request failed.  Returned status of ' + xhr.status;
+            }
+        };
+        xhr.send();
+    });
+
+</script>
+</body>
+</html>

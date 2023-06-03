@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  webapi:
+    build: .
+    ports:
+      - "8080:5000"
+  front:
+    build:
+      context: .
+      dockerfile: ../FrontForWebApi/Dockerfile
+    ports:
+      - "8000:80"
+  
